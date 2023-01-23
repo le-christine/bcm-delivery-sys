@@ -1,0 +1,42 @@
+/* Kanban board container */
+.kanban-board {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Kanban lane container */
+.kanban-lane {
+    flex: 1 0 calc(25% - 16px); /* 4 lanes taking up 25% of the width each */
+    margin: 8px;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 480px) {
+    .kanban-lane {
+        flex: 1 0 calc(100% - 16px); /* 1 lane taking up 100% of the width */
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .kanban-lane {
+        flex: 1 0 calc(50% - 16px); /* 2 lanes taking up 50% of the width each */
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .kanban-lane {
+        flex: 1 0 calc(33.33% - 16px); /* 3 lanes taking up 33.33% of the width each */
+    }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+    .kanban-lane {
+        flex: 1 0 calc(25% - 16px); /* 4 lanes taking up 25% of the width each */
+    }
+}
+
+@media only screen and (min-width: 1441px) {
+    .kanban-lane {
+        flex: 1 0 calc(20% - 16px); /* 5 lanes taking up 20% of the width each */
+    }
+}
