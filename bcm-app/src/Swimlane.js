@@ -15,6 +15,8 @@ const Card = styled.div`
 const Lane = styled.div`
   position: relative;
   background-color: lightblue;
+  width:100%;
+  height: 700px;
 `;
 
 
@@ -28,32 +30,33 @@ const reorder = (list, startIndex, endIndex) => {
 
 
 class Swimlane extends Component {
+
   constructor(props) {
     super(props);
     this.onDragEnd = this.onDragEnd.bind(this);
   }
 
   onDragEnd(result) {
-    // if no destination, return
-    if (!result.destination) {
-      return;
-    }
+   // if no destination, return
+   if (!result.destination) {
+     return;
+   }
 
-    // reorder the trucks array
-    const newTrucks = reorder(
-      this.props.trucks,
-      result.source.index,
-      result.destination.index
-    );
+   const newTrucks = reorder(
+     this.props.trucks,
+     result.source.index,
+     result.destination.index
+   );
 
-    this.setState({ trucks: newTrucks });
-  }
+   console.log("Trucks were rearranged -->", newTrucks);
+   this.props.onReorder(newTrucks);
+ }
 
   render() {
     return (
       <div>
       <h2>{this.props.status}</h2>
-        <DragDropContext>
+        <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId={`${this.props.status}`}>
         {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
