@@ -2,8 +2,10 @@
 
 A full-stack web application that monitors delivery trucks. It provides information about the status of each truck, along with ID and driver.
 
-Back-end REST API server is deployed on AWS and can be accessed via: https://3nrl59woq6.execute-api.us-east-1.amazonaws.com/dev/trucks
+Both the client and server are deployed to AWS and can be accessed via:
 
+- Front-end React website: https://main.db8iao71gl9st.amplifyapp.com/
+- Back-end REST API server: https://3nrl59woq6.execute-api.us-east-1.amazonaws.com/dev/trucks
 
 # API Specification
 ## GET /trucks
@@ -68,7 +70,13 @@ status - the status of the new truck
 - Path parameter: id - the id of the delivery truck to retrieve
 Example response:
 
+# Project Structure
 
+### /server/src/
+Server file can be found here.
+
+### /bcm-app/src/
+React components can be found here.
 
 # Technologies Used
 - Server: Node.js (Express.js)
