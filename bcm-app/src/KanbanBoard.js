@@ -2,6 +2,7 @@ import { Component } from 'react';
 import initialData from './initial-data';
 import Swimlane from './Swimlane.js';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import Accordion from 'react-bootstrap/Accordion';
 import './kanban.css'
 
 
@@ -139,13 +140,23 @@ class KanbanBoard extends Component {
   render() {
     return (
       <div>
-      <h4>Add New Truck</h4>
-      <form onSubmit={this.handleSubmitNewTruck}>
-      <label>Driver: <input required type="text" name="name" /></label>
-      <input type="submit" value="Add Truck" />
-      </form>
+      <h3> Control Panel</h3>
+      <h4> Click on action to expand form.</h4>
 
-      <h4>Edit Truck</h4>
+        <Accordion>
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>Add New Truck</Accordion.Header>
+          <Accordion.Body>
+            <form onSubmit={this.handleSubmitNewTruck}>
+            <label>Driver: <input required type="text" name="name" /></label>
+            <input type="submit" value="Add Truck" />
+            </form>
+          </Accordion.Body>
+        </Accordion.Item>
+
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>Edit Truck</Accordion.Header>
+          <Accordion.Body>
       <form onSubmit={this.handleSubmitEditTruck}>
       <label>Id: <input required type="number" name="name" min="1" max="8"/></label>
       <label>Driver: <input required type="text" name="name" /></label>
@@ -157,16 +168,25 @@ class KanbanBoard extends Component {
 </select></label>
       <input type="submit" value="Edit Truck" />
       </form>
+      </Accordion.Body>
+    </Accordion.Item>
 
+    <Accordion.Item eventKey="2">
+      <Accordion.Header>Delete Truck</Accordion.Header>
+      <Accordion.Body>
       <h4>Delete Truck</h4>
       <form onSubmit={this.handleSubmitDeleteTruck}>
       <label>Id: <input required type="number" name="name" min="1" max="8"/></label>
       <input type="submit" value="Delete Truck" />
       </form>
+      </Accordion.Body>
+    </Accordion.Item>
+  </Accordion>
 
 
 
       <div>
+      <h3>Trucks Status</h3>
       <DragDropContext onDragEnd={this.handleReorder}>
       <Droppable droppableId="all-lanes" direction="horizontal" >
       {(provided) => (
@@ -175,7 +195,7 @@ class KanbanBoard extends Component {
           <Droppable key={status} droppableId={status}>
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
-            <Swimlane trucks={this.state.truckByStatus[status].trucks} status={status} onReorder={this.handleReorder} />
+                <Swimlane trucks={this.state.truckByStatus[status].trucks} status={status} onReorder={this.handleReorder} />
             </div>
           )}
           </Droppable>
@@ -186,6 +206,8 @@ class KanbanBoard extends Component {
       </Droppable>
       </DragDropContext>
       </div>
+
+
       </div>
     )
   }

@@ -1,12 +1,13 @@
 import React from 'react';
 import KanbanBoard from './KanbanBoard.js'
-import './App.css';
+// import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from './NavBar.js'
 
 function App() {
   return (
         <div className="App">
-          <header className="nav">
-          <h1 className="title">BCM Delivery Monitoring System</h1></header>
+          <NavBar/>
           <KanbanBoard/>
         </div>
 

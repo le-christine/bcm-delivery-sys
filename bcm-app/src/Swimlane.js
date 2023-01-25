@@ -11,6 +11,7 @@ const Card = styled.div`
    background-color: #fff;
    user-select:none;
    cursor:pointer;
+   width:100%;
 `;
 
 const Lane = styled.div`
@@ -59,7 +60,7 @@ class Swimlane extends Component {
         <Droppable droppableId={`${this.props.status}`}>
         {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
-            <Lane>
+            <Lane className="kanban-lane">
         {this.props.trucks
             .map((truck, index) => (
                 <Draggable key={truck.id} draggableId={truck.id.toString()} index={index}>
