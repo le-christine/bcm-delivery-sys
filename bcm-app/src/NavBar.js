@@ -5,7 +5,7 @@ function NavBar() {
   return (
     <Navbar expand="lg" variant="light" bg="light">
       <Container>
-        <Navbar.Brand href="#">BCM Delivery System</Navbar.Brand>
+        <Navbar.Brand href="#">BCM Delivery Monitoring System</Navbar.Brand>
       </Container>
     </Navbar>
   );
