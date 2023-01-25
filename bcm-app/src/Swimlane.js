@@ -1,6 +1,7 @@
 import { React, Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
+import './kanban.css'
 
 const Card = styled.div`
   padding: 8px;
@@ -15,7 +16,6 @@ const Card = styled.div`
 const Lane = styled.div`
   position: relative;
   background-color: lightblue;
-  width:100%;
   height: 700px;
 `;
 
@@ -24,7 +24,6 @@ const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
-
   return result;
 };
 
@@ -49,12 +48,12 @@ class Swimlane extends Component {
    );
 
    console.log("Trucks were rearranged -->", newTrucks);
-   this.props.onReorder(newTrucks);
+   this.props.onReorder(this.props.status, newTrucks);
  }
 
   render() {
     return (
-      <div>
+      <div className = "lane">
       <h2>{this.props.status}</h2>
         <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId={`${this.props.status}`}>
@@ -62,7 +61,6 @@ class Swimlane extends Component {
             <div ref={provided.innerRef} {...provided.droppableProps}>
             <Lane>
         {this.props.trucks
-            .filter(truck => truck.status === this.props.status)
             .map((truck, index) => (
                 <Draggable key={truck.id} draggableId={truck.id.toString()} index={index}>
                     {(provided) => (

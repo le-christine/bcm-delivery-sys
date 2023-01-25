@@ -1,15 +1,13 @@
 import React from 'react';
-
 import KanbanBoard from './KanbanBoard.js'
 import './App.css';
 
-
-
 function App() {
   return (
-
         <div className="App">
-            <KanbanBoard/>
+          <header className="nav">
+          <h1 className="title">BCM Delivery Monitoring System</h1></header>
+          <KanbanBoard/>
         </div>
 
   );
